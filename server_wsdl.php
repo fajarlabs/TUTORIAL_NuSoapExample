@@ -23,6 +23,24 @@ $server->register('hello',                // method name
 function hello($name) {
 	return 'Hellooo, ' . $name;
 }
+
+// Registrasi metode tanpa parameter
+// Register the method to expose
+$server->register('hello2',             // method name
+    array(),        					// inputan tanpa parameter
+    array('return' => 'xsd:string'),    // output parameters
+    'urn:server_wsdl',                  // namespace
+    'urn:server_wsdl#hello',            // soapaction
+    'rpc',                              // style
+    'encoded',                          // use
+    'Says hello to the caller'          // documentation
+    );
+
+// Define the method as a PHP function
+function hello2() {
+	return 'Hellooo, Tanpa parameter';
+}
+
 // Use the request to (try to) invoke the service
 if ( !isset( $HTTP_RAW_POST_DATA ) ) $HTTP_RAW_POST_DATA =file_get_contents( 'php://input' );
 $server->service($HTTP_RAW_POST_DATA);

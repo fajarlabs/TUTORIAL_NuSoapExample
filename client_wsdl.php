@@ -45,4 +45,27 @@ echo '<pre>' . htmlspecialchars($client->response, ENT_QUOTES) . '</pre>';
 // Tampilkan pesan debug
 echo '<h2>Debug</h2>';
 echo '<pre>' . htmlspecialchars($client->debug_str, ENT_QUOTES) . '</pre>';
+
+// Panggil metode SOAP-nya
+$result = $client->call('hello2', array());
+// Periksa kegagalan metode
+if ($client->fault) {
+	echo '<h2>Fault_2</h2><pre>';
+	print_r($result);
+	echo '</pre>';
+} else {
+    // Periksa errornya
+	$err = $client->getError();
+	if ($err) {
+        // Tampilkan errornya
+		echo '<h2>Error_2</h2><pre>' . $err . '</pre>';
+	} else {
+        // Tampilkan hasilnya
+		echo '<h2>Result_2</h2><pre>';
+		print_r($result);
+		echo '</pre>';
+	}
+}
+
+
 ?>

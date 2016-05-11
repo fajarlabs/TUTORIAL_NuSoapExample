@@ -12,6 +12,7 @@ $server = new soap_server;
 // Membuat metode service-nya
 $server->configureWSDL('login', $URL);
 $server->wsdl->schemaTargetNamespace = $URL;
+
 $server->register('login', 							// nama metodenya
 				   array(
 				   		'username' => 'xsd:string', // Parameter awalnya
